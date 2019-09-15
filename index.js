@@ -20,7 +20,7 @@ const tap = (f) => (x) => {
   f(x);
   return x;
 };
-const pipe = (f, g) => (x) => g(f(x));
+const pipe = (...fs) => (x) => fs.reduce((acc, f) => f(acc), x);
 
 const double = (x) => x * 2;
 observable.subscribe(
