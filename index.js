@@ -16,13 +16,18 @@ class Observable {
 
 const observable = new Observable();
 
+const tap = (f) => (x) => {
+  f(x);
+  return x;
+};
 const pipe = (f, g) => (x) => g(f(x));
 
 const double = (x) => x * 2;
 observable.subscribe(
   pipe(
     double,
-    console.log
+    tap(console.log),
+    tap(console.log)
   )
 );
 
